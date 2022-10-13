@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    注意: 除了手動變更此檔案之外，您還可以使用
+    Web 管理工具進行應用程式的設定。請使用
+    Visual Studio 中的 [網站] ->[Asp.Net 組態] 選項。
+    您可以在 machine.config.comments (通常
+    位於 \Windows\Microsoft.Net\Framework\vx.x\Config) 中
+    找到完整的設定和註解清單 
+-->
+<configuration>
+  <appSettings>
+    <add key="SessionTimeout" value="300" />
+  </appSettings>
+  <connectionStrings>
+    <add name="CMS_ENTConnectionString" connectionString="Data Source=192.168.2.170\SQL2012;Initial Catalog=YCH_CRM;Persist Security Info=True;User ID=sa;Password=Acme-70472615" providerName="System.Data.SqlClient" />
+    <add name="FaremmaConnectionString" connectionString="Data Source=192.168.2.170\SQL2012;Initial Catalog=YCH_CRM;User ID=sa;Password=Acme-70472615" providerName="System.Data.SqlClient" />
+    <!-- 
+    <add name="CMS_ENTConnectionString" connectionString="Data Source=192.168.101.20;Initial Catalog=Faremma;Persist Security Info=True;User ID=ACME;Password=70472615" providerName="System.Data.SqlClient" />
+    <add name="FaremmaConnectionString" connectionString="Data Source=192.168.101.20;Initial Catalog=Faremma;User ID=ACME;Password=70472615" providerName="System.Data.SqlClient" />
+        -->
+  </connectionStrings>
+  <system.web>
+    <!-- 
+            設定 compilation debug="true" 以將偵錯符號
+            插入至編譯的頁面。因為這會
+            影響效能，所以請只在開發期間
+            才將此值設定為 true。
+        -->
+    <compilation debug="true" targetFramework="4.0">
+      <assemblies>
+        <!--<add assembly="System.Web.Extensions, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31BF3856AD364E35"/>-->
+        <add assembly="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=B77A5C561934E089" />
+        <add assembly="System.Data.Linq, Version=4.0.0.0, Culture=neutral, PublicKeyToken=B77A5C561934E089" />
+      </assemblies>
+    </compilation>
+    <!--
+            <authentication> 區段可讓您設定 
+            ASP.NET 用來識別連入使用者的 
+            安全性驗證模式。 
+        -->
+    <authentication mode="Windows" />
+    <!--
+            <customErrors> 區段可讓您設定 
+            當執行要求期間發生無法處理 
+            之錯誤時的處理方式。更明確地說，
+            開發人員可以利用它設定要顯示的  
+            html 錯誤頁面，以取代錯誤堆疊追蹤。
+
+        <customErrors mode="RemoteOnly" defaultRedirect="GenericErrorPage.htm">
+            <error statusCode="403" redirect="NoAccess.htm" />
+            <error statusCode="404" redirect="FileNotFound.htm" />
+        </customErrors>
+        -->
+    <pages controlRenderingCompatibilityVersion="3.5" clientIDMode="AutoID" />
+  </system.web>
+  <!-- 
+        在 Internet Information Services 7.0 下，需要有 system.webServer 區段才能執行
+        ASP.NET AJAX。在舊版 IIS 下則不需要。
+    -->
+  <runtime>
+    <assemblyBinding appliesTo="v2.0.50727" xmlns="urn:schemas-microsoft-com:asm.v1">
+      <dependentAssembly>
+        <assemblyIdentity name="System.Web.Extensions" publicKeyToken="31bf3856ad364e35" />
+        <bindingRedirect oldVersion="1.0.0.0-1.1.0.0" newVersion="3.5.0.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="System.Web.Extensions.Design" publicKeyToken="31bf3856ad364e35" />
+        <bindingRedirect oldVersion="1.0.0.0-1.1.0.0" newVersion="3.5.0.0" />
+      </dependentAssembly>
+    </assemblyBinding>
+  </runtime>
+  <system.webServer>
+    <handlers>
+      <remove name="ExtensionlessUrlHandler-ISAPI-4.0_32bit" />
+      <remove name="ExtensionlessUrlHandler-ISAPI-4.0_64bit" />
+      <remove name="ExtensionlessUrlHandler-Integrated-4.0" />
+      <add name="ExtensionlessUrlHandler-ISAPI-4.0_32bit" path="*." verb="GET,HEAD,POST,DEBUG,PUT,DELETE,PATCH,OPTIONS" modules="IsapiModule" scriptProcessor="%windir%\Microsoft.NET\Framework\v4.0.30319\aspnet_isapi.dll" preCondition="classicMode,runtimeVersionv4.0,bitness32" responseBufferLimit="0" />
+      <add name="ExtensionlessUrlHandler-ISAPI-4.0_64bit" path="*." verb="GET,HEAD,POST,DEBUG,PUT,DELETE,PATCH,OPTIONS" modules="IsapiModule" scriptProcessor="%windir%\Microsoft.NET\Framework64\v4.0.30319\aspnet_isapi.dll" preCondition="classicMode,runtimeVersionv4.0,bitness64" responseBufferLimit="0" />
+      <add name="ExtensionlessUrlHandler-Integrated-4.0" path="*." verb="GET,HEAD,POST,DEBUG,PUT,DELETE,PATCH,OPTIONS" type="System.Web.Handlers.TransferRequestHandler" preCondition="integratedMode,runtimeVersionv4.0" />
+    </handlers>
+        <defaultDocument>
+            <files>
+                <add value="Login.aspx" />
+            </files>
+        </defaultDocument>
+  </system.webServer>
+</configuration>
